@@ -5,6 +5,6 @@ terraform {
     region  = "us-east-1"
     profile = "iamadmin-general"
 
-    dynamodb_table = "tfstatelock"
+    /* dynamodb_table = "tfstatelock" */
   }
 }
