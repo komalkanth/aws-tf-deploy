@@ -27,6 +27,6 @@ module "vpc" {
     }
 }
 
-/* output "locals_output" {
+output "locals_output" {
   value = module.vpc
-} */
+}
