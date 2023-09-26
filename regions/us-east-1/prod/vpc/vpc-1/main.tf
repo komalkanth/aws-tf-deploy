@@ -27,6 +27,14 @@ module "vpc" {
   }
 }
 
+module "ec2-public-instance" {
+  source = "../../../../../../aws-instance-modules/ec2"
+  instance_type = "t2.micro"
+  key_name = "general-usea1-key-1"
+  public_subnet_id = "10.1.0.0/24"
+  public_security_group_ids = []
+}
+
 output "locals_output" {
   value = module.vpc
 }
