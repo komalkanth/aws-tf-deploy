@@ -25,26 +25,36 @@ module "vpc" {
       "subnet-1" : "10.1.2.0/24"
     }
   }
+  default_tags = {
+    environment  = "prod"
+    organization = "kkoncloud.com"
+  }
 }
 
 module "ec2-public-instance" {
-  source = "../../../../../../aws-instance-modules/ec2"
+  source           = "../../../../../../aws-instance-modules/ec2"
   deploy_instances = false
 
   instance_type = "t2.micro"
-  key_name = "general-usea1-key-1"
+  key_name      = "general-usea1-key-1"
   instance_to_cidr_map = {
-      "instance_1": "10.1.0.0/24"
-      "instance_2": "10.1.1.0/24"
-    }
+    "instance_1" : "10.1.0.0/24"
+    "instance_2" : "10.1.1.0/24"
+  }
   public_subnet_cidr_id_map = module.vpc.public_subnet_cidr_id_map
   public_security_group_ids = []
-  }
+  region                    = module.vpc.region
+  organization              = module.vpc.organization
+  environment               = module.vpc.environment
+  default_tags              = module.vpc.default_tags
+
+}
+
+
 
 output "locals_output" {
   value = module.vpc
 }
-
 
 output "ec2_instance_output" {
   value = module.ec2-public-instance
