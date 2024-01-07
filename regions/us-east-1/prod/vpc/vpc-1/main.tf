@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git::https://github.com/komalkanth/aws-tf-modules.git"
+  source = "git::https://github.com/komalkanth/aws-tf-modules.git//vpc"
 
   region = "us-east-1"
 
@@ -32,7 +32,7 @@ module "vpc" {
 }
 
 module "ec2-public-instance" {
-  source           = "git::https://github.com/komalkanth/aws-instance-modules.git"
+  source           = "git::https://github.com/komalkanth/aws-instance-modules.git//ec2"
   deploy_instances = false
 
   instance_type = "t2.micro"
